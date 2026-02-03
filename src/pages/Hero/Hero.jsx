@@ -42,33 +42,25 @@ const GridBackground = () => {
 
 export default function Hero() {
   const words = [
-    "Full-Stack Developer & UI/UX Enthusiast",
-    "JavaScript Developer & Creator of Olova.js",
-    "Learning MARN Stack",
-    "Linux & GitHub for DevOps Enthusiast",
+    "Data Analytics & BI Developer",
+    "Database Design & ETL Automation",
+    "Applied Machine Learning and Big Data",
+    "End-to-End Data Pipelines, Visualization & Modeling",
   ];
 
   const [code] = useState(`
 const profile = {
-    name: 'Nazmul Hossain',
-    title: 'Full-Stack Developer | Cloud Enthusiast | Problem Solver',
+    name: 'Juan Manuel Marbis',
+    title: 'Data Analytics | Business Intelligence | Decision Science',
+
     skills: [
-        'React', 'NextJS', 'Redux', 'Express',
-        'MySQL', 'MongoDB', 'Docker', 'AWS', 'TypeScript',
-        'GraphQL', 'Git', 'Linux', 'Discord Development'
+        'Python', 'SQL', 'R', 'PowerBI','Azure ML', 
+        'AWS', 'ETL Pipelines', 'Machine Learning',
+        'Relational Databases'
     ],
-    hardWorker: true,
-    quickLearner: true,
-    problemSolver: true,
-    yearsOfExperience: 4, 
-    hireable: function() {
-        return (
-            this.hardWorker &&
-            this.problemSolver &&
-            this.skills.length >= 5 &&
-            this.yearsOfExperience >= 3
-        );
-    }
+
+    focus: ['Data Analytics', 'BI', 'Machine Learning'],
+    hireable: 'Yes'
 };
   `);
 
@@ -178,7 +170,7 @@ const profile = {
               <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 mb-6 sm:mb-8 animate__animated animate__fadeInDown animate__delay-1s">
                 <div className="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></div>
                 <span className="text-gray-300 text-xs sm:text-sm font-medium">
-                  Welcome to my universe
+                  Welcome to my portafolio
                 </span>
               </div>
 
@@ -190,7 +182,7 @@ const profile = {
                     I&apos;m
                     <span className="typing-effect gradient-text">
                       {" "}
-                      Nazmul Hossain
+                      Juan Manuel Marbis
                     </span>
                   </span>
                 </h1>
@@ -206,14 +198,6 @@ const profile = {
                     words={words}
                   />
                 </span>
-              </div>
-
-              {/* Description */}
-              <div className="relative mb-8 sm:mb-12 max-w-xl">
-                <p className="text-base sm:text-xl text-gray-300/90 leading-relaxed">
-                  JavaScript lover 🚀 | OlovaJS creator 🔧 | Crafting frameworks
-                  and coding the future 💻✨
-                </p>
               </div>
 
               {/* CTA Buttons */}
@@ -248,18 +232,18 @@ const profile = {
               {/* Floating badges */}
               <div className="hidden lg:block absolute left-[5.5rem] top-[2.3rem] animate-float-slow">
                 <div className="px-4 py-2 rounded-lg bg-purple-500/10 backdrop-blur-sm border border-purple-500/20 text-purple-400">
-                  <i className="fas fa-wand-magic-sparkles"></i>&nbsp;&nbsp;UI
+                  <i className="fas fa-wand-magic-sparkles"></i>&nbsp;&nbsp;Modeling
                   Magic
                 </div>
               </div>
               <div className="hidden lg:block absolute right-10 top-20 animate-float">
                 <div className="px-4 py-2 rounded-lg bg-blue-500/10 backdrop-blur-sm border border-blue-500/20 text-blue-400">
-                  <i className="fas fa-code"></i>&nbsp;&nbsp;Clean Code
+                  <i className="fas fa-code"></i>&nbsp;&nbsp;Statistical Analysis
                 </div>
               </div>
               <div className="hidden lg:block absolute top-[17rem] left-[70%] transform -translate-x-1/2 animate-float">
                 <div className="px-4 py-2 rounded-lg bg-amber-500/10 backdrop-blur-sm border border-amber-500/20 text-amber-400">
-                  <i className="fas fa-lightbulb"></i>&nbsp;&nbsp;Innovation
+                  <i className="fas fa-lightbulb"></i>&nbsp;&nbsp;Feature Engineering
                 </div>
               </div>
             </div>
@@ -274,7 +258,6 @@ const profile = {
                     <div className="window-dot bg-green-500"></div>
                     <span className="ml-2 text-sm text-gray-400 flex items-center gap-2">
                       <i className="fas fa-code"></i>
-                      developer.js
                     </span>
                   </div>
                   <pre className="language-javascript">
@@ -299,3 +282,4 @@ const profile = {
     </>
   );
 }
+
