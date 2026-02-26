@@ -182,7 +182,7 @@ export default function About() {
                 <span style={{ color: "var(--color-primary-light)" }}>technical skills</span> and{" "}
                 <span style={{ color: "var(--color-teal-light)" }}>real business understanding</span>{" "}
                 work together. Whether it&apos;s building data pipelines or designing dashboards,
-                my goal is always the same — give people the clarity they need to make better
+                my goal is always the same, give people the clarity they need to make better
                 decisions.
               </p>
             </motion.div>
