@@ -225,7 +225,7 @@ export default function Contact() {
               <div style={{ display: "flex", gap: "0.75rem" }}>
                 {[
                   { label: "GitHub",   href: "https://github.com/jmarbis1703", icon: "fab fa-github" },
-                  { label: "LinkedIn", href: "https://linkedin.com/in/juan-marbis", icon: "fab fa-linkedin" },
+                  { label: "LinkedIn", href: "https://www.linkedin.com/in/juan-marbis-147076240/", icon: "fab fa-linkedin" },
                 ].map((social) => (
                   <a
                     key={social.label}
