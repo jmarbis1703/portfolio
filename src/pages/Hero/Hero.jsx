@@ -225,7 +225,7 @@ def build_profile():
 
           {/* Scroll indicator */}
           <div className="absolute bottom-6 left-1/2 -translate-x-1/2 animate-bounce flex flex-col items-center gap-1">
-            <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.6rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--color-text-muted)" }}>
+            <span style={{ fontFamily: "var(--font-mono)", fontSize: "1rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--color-text-muted)" }}>
               scroll
             </span>
             <i className="fas fa-chevron-down" style={{ color: "var(--color-primary-light)", opacity: 0.5, fontSize: "0.9rem" }} />
