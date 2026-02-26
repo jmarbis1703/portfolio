@@ -18,13 +18,14 @@ const GridBackground = () => (
   </div>
 );
 
-const kpis = [
-  { value: "85%",   label: "Manual overhead reduced",      color: "var(--color-teal)" },
-  { value: "$379K", label: "Revenue opportunity found",     color: "var(--color-primary-light)" },
-  { value: "8.9",   label: "GPA / 10",                     color: "var(--color-amber)" },
+const skillTags = [
+  "Power BI & DAX",
+  "Python · Pandas · NumPy",
+  "SQL & ETL Pipelines",
+  "Generative AI & LLMs",
+  "Azure · Databricks",
+  "Statistical Modeling",
 ];
-
-const skillTags = ["Python", "SQL", "Power BI", "Machine Learning", "ETL Pipelines"];
 
 export default function Hero() {
   const [code] = useState(
@@ -32,19 +33,22 @@ export default function Hero() {
 
 import pandas as pd
 import numpy as np
+from sklearn.pipeline import Pipeline
 
 def build_profile():
     return {
-        "name":     "Juan Manuel Marbis",
-        "role":     "Data Analyst & BI Developer",
-        "stack":    ["Python", "SQL", "R", "Power BI"],
-        "cloud":    ["Azure ML", "AWS"],
-        "focus":    ["ETL", "EDA", "Predictive Modeling"],
+        "name":    "Juan Manuel Marbis Fernandez",
+        "role":    "Data Analyst & BI Developer",
+        "bi":      ["Power BI", "DAX", "Tableau"],
+        "stack":   ["Python", "SQL", "R"],
+        "cloud":   ["Azure", "Databricks"],
+        "ai":      ["LLM APIs", "Prompt Engineering"],
+        "cert":    "IBM Data Science Professional",
         "open_to_work": True
     }
 
-# Key metric: 85% reduction in manual overhead
-# Delivered via automated reporting engine`
+# 85% reduction in manual overhead
+# via automated VBA + SQL reporting engine`
   );
 
   useEffect(() => {
@@ -105,21 +109,6 @@ def build_profile():
                 style={{ background: "rgba(0,201,167,0.08)", borderRadius: "50%", filter: "blur(60px)" }}
               />
 
-              {/* Mono overline */}
-              <div
-                style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "13px",
-                  fontWeight: 600,
-                  letterSpacing: "0.12em",
-                  color: "var(--color-teal)",
-                  marginBottom: "1rem",
-                  opacity: 0.9,
-                }}
-              >
-                $ whoami --professional
-              </div>
-
               {/* Name heading */}
               <div className="relative mb-6 sm:mb-8">
                 <h1
@@ -144,7 +133,7 @@ def build_profile():
                       display: "inline-block",
                     }}
                   >
-                    Marbis
+                    Marbis Fernandez
                   </span>
                 </h1>
               </div>
@@ -188,55 +177,6 @@ def build_profile():
                 Turning raw data into strategic decisions — BI development,
                 ETL pipelines, and ML modeling from concept to deployment.
               </p>
-
-              {/* KPI strip */}
-              <div
-                className="animate__animated animate__fadeInUp animate__delay-1s"
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(3, 1fr)",
-                  border: "1px solid var(--color-border)",
-                  borderRadius: "var(--radius-lg)",
-                  overflow: "hidden",
-                  marginBottom: "1.25rem",
-                  maxWidth: "420px",
-                  background: "var(--color-bg-card)",
-                }}
-              >
-                {kpis.map((kpi, i) => (
-                  <div
-                    key={i}
-                    style={{
-                      padding: "0.875rem 0.75rem",
-                      borderRight: i < 2 ? "1px solid var(--color-border)" : "none",
-                      textAlign: "center",
-                    }}
-                  >
-                    <div
-                      style={{
-                        fontFamily: "var(--font-mono)",
-                        fontSize: "1.375rem",
-                        fontWeight: 700,
-                        color: kpi.color,
-                      }}
-                    >
-                      {kpi.value}
-                    </div>
-                    <div
-                      style={{
-                        fontFamily: "var(--font-body)",
-                        fontSize: "0.65rem",
-                        color: "var(--color-text-muted)",
-                        marginTop: "0.25rem",
-                        letterSpacing: "0.03em",
-                        textTransform: "uppercase",
-                      }}
-                    >
-                      {kpi.label}
-                    </div>
-                  </div>
-                ))}
-              </div>
 
               {/* Skill tag strip */}
               <div
