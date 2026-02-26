@@ -1,153 +1,86 @@
 import { useState, useEffect } from "react";
 import Prism from "prismjs";
-import "prismjs/components/prism-javascript";
+import "prismjs/components/prism-python";
 import "@/assets/css/tomorrow.css";
 import Meteors from "@/components/ui/meteors";
 import PortfolioPage from "@/pages/About/About";
-import SparklesText from "@/components/ui/sparkles-text";
-import { FlipWords } from "@/components/ui/flip-words";
 
-// Grid Background - Replacing the HexagonBackground
-const GridBackground = () => {
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
-      <div className="absolute inset-0 [mask-image:radial-gradient(ellipse_at_center,transparent_0%,black)]">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="100%"
-          height="100%"
-          className="absolute inset-0"
-        >
-          <pattern
-            id="grid"
-            width="40"
-            height="40"
-            patternUnits="userSpaceOnUse"
-          >
-            <rect
-              width="40"
-              height="40"
-              fill="none"
-              stroke="white"
-              strokeWidth="0.5"
-              className="opacity-40 animate-gridPulse"
-            />
-          </pattern>
-          <rect width="100%" height="100%" fill="url(#grid)" />
-        </svg>
-      </div>
+const GridBackground = () => (
+  <div className="absolute inset-0 overflow-hidden pointer-events-none" style={{ opacity: 0.08, animation: "gridPulse 4s ease-in-out infinite" }}>
+    <div className="absolute inset-0 [mask-image:radial-gradient(ellipse_at_center,transparent_0%,black)]">
+      <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" className="absolute inset-0">
+        <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+          <rect width="40" height="40" fill="none" stroke="#2B7FFF" strokeWidth="0.5" />
+        </pattern>
+        <rect width="100%" height="100%" fill="url(#grid)" />
+      </svg>
     </div>
-  );
-};
+  </div>
+);
+
+const kpis = [
+  { value: "85%",   label: "Manual overhead reduced",      color: "var(--color-teal)" },
+  { value: "$379K", label: "Revenue opportunity found",     color: "var(--color-primary-light)" },
+  { value: "8.9",   label: "GPA / 10",                     color: "var(--color-amber)" },
+];
+
+const skillTags = ["Python", "SQL", "Power BI", "Machine Learning", "ETL Pipelines"];
 
 export default function Hero() {
-  const words = [
-    "Data Analytics & BI Developer",
-    "Database Design & ETL Automation",
-    "Applied Machine Learning and Big Data",
-    "End-to-End Data Pipelines, Visualization & Modeling",
-  ];
+  const [code] = useState(
+`# analyst_profile.py
 
-  const [code] = useState(`
-const profile = {
-    name: 'Juan Manuel Marbis',
-    title: 'Data Analytics | Business Intelligence | Decision Science',
+import pandas as pd
+import numpy as np
 
-    skills: [
-        'Python', 'SQL', 'R', 'PowerBI','Azure ML', 
-        'AWS', 'ETL Pipelines', 'Machine Learning',
-        'Relational Databases'
-    ],
+def build_profile():
+    return {
+        "name":     "Juan Manuel Marbis",
+        "role":     "Data Analyst & BI Developer",
+        "stack":    ["Python", "SQL", "R", "Power BI"],
+        "cloud":    ["Azure ML", "AWS"],
+        "focus":    ["ETL", "EDA", "Predictive Modeling"],
+        "open_to_work": True
+    }
 
-    focus: ['Data Analytics', 'BI', 'Machine Learning'],
-    hireable: 'Yes'
-};
-  `);
+# Key metric: 85% reduction in manual overhead
+# Delivered via automated reporting engine`
+  );
 
   useEffect(() => {
     Prism.highlightAll();
 
-    // Add CSS animation for grid and dots
-    const style = document.createElement("style");
-    style.textContent = `
-      @keyframes gridPulse {
-        0%, 100% { opacity: 0.1; }
-        50% { opacity: 0.3; }
-      }
-      
-      @keyframes dotPulse {
-        0%, 100% { opacity: 0.2; transform: scale(0.8); }
-        50% { opacity: 0.5; transform: scale(1.2); }
-      }
-      
-      /* Media query for 1366x768 resolution */
-      @media screen and (width: 1366px) and (height: 768px), 
-             screen and (width: 1367px) and (height: 768px),
-             screen and (width: 1368px) and (height: 769px) {
-        .hero {
-          padding-top: 12rem !important;
-        }
-        .hero .container {
-          padding-top: 10rem !important;
-          margin-top: 5rem !important;
-        }
-        .hero-section-padding {
-          padding-top: 12rem !important;
-        }
-      }
-    `;
-    document.head.appendChild(style);
-
-    // Apply extra padding for 1366x768 resolution
     const checkResolution = () => {
       const isTargetResolution =
         window.innerWidth >= 1360 &&
         window.innerWidth <= 1370 &&
         window.innerHeight >= 760 &&
         window.innerHeight <= 775;
-
-      if (isTargetResolution) {
-        document.documentElement.style.setProperty(
-          "--hero-padding-top",
-          "12rem"
-        );
-      } else {
-        document.documentElement.style.setProperty("--hero-padding-top", "0");
-      }
+      document.documentElement.style.setProperty(
+        "--hero-padding-top",
+        isTargetResolution ? "12rem" : "0"
+      );
     };
 
     checkResolution();
     window.addEventListener("resize", checkResolution);
-
-    return () => {
-      document.head.removeChild(style);
-      window.removeEventListener("resize", checkResolution);
-    };
+    return () => window.removeEventListener("resize", checkResolution);
   }, [code]);
 
   return (
     <>
-      <main className="bg-[#020617] text-white min-h-screen">
+      <main style={{ background: "var(--color-bg-abyss)" }} className="text-white min-h-screen">
         <section
           className="hero min-h-screen flex items-center justify-center relative px-4 sm:px-6 lg:px-8 py-10 md:py-16 lg:py-0 hero-section-padding"
           style={{ paddingTop: "var(--hero-padding-top, 0)" }}
         >
-          <div className="absolute inset-0"></div>
-
-          {/* Choose one of these background options */}
+          <div className="absolute inset-0" />
           <GridBackground />
 
-          {/* Or keep the original backgrounds if you prefer */}
-          {/* <HexagonBackground /> */}
-          {/* <AnimatedGrid /> */}
-          {/* <DotBackground /> */}
-
-          {/* Meteors Effect */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
             <Meteors number={10} />
           </div>
 
-          {/* Main content container */}
           <div
             className="container mx-auto flex flex-col lg:flex-row items-center justify-between relative z-10 py-8 md:py-10 lg:py-12 md:pt-28 xl:pt-28"
             style={{
@@ -160,108 +93,240 @@ const profile = {
                   : "",
             }}
           >
-            {/* Left column - Text content */}
+            {/* ── Left column ── */}
             <div className="w-full lg:w-1/2 mb-12 lg:mb-0 animate__animated animate__fadeInLeft relative">
-              {/* Decorative blurs */}
-              <div className="absolute hidden lg:-top-20 lg:-left-20 lg:block w-48 h-48 lg:w-64 lg:h-64 bg-blue-500/10 rounded-full blur-3xl"></div>
-              <div className="absolute hidden lg:block lg:top-40 lg:-right-20 w-48 h-48 lg:w-64 lg:h-64 bg-teal-500/10 rounded-full blur-3xl"></div>
+              {/* Ambient glows */}
+              <div
+                className="absolute hidden lg:-top-20 lg:-left-20 lg:block w-64 h-64"
+                style={{ background: "radial-gradient(circle, var(--color-primary-glow), transparent)", borderRadius: "50%", filter: "blur(60px)" }}
+              />
+              <div
+                className="absolute hidden lg:block lg:top-40 lg:-right-20 w-64 h-64"
+                style={{ background: "rgba(0,201,167,0.08)", borderRadius: "50%", filter: "blur(60px)" }}
+              />
 
-              {/* Welcome badge */}
-              <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-full bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 mb-6 sm:mb-8 animate__animated animate__fadeInDown animate__delay-1s">
-                <div className="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></div>
-                <span className="text-gray-300 text-xs sm:text-sm font-medium">
-                  Welcome to my portafolio
-                </span>
+              {/* Mono overline */}
+              <div
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "13px",
+                  fontWeight: 600,
+                  letterSpacing: "0.12em",
+                  color: "var(--color-teal)",
+                  marginBottom: "1rem",
+                  opacity: 0.9,
+                }}
+              >
+                $ whoami --professional
               </div>
 
-              {/* Name section */}
+              {/* Name heading */}
               <div className="relative mb-6 sm:mb-8">
-                <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold leading-tight">
-                  <SparklesText text="Hello" />
-                  <span className="relative inline-block">
-                    I&apos;m
-                    <span className="typing-effect gradient-text">
-                      {" "}
-                      Juan Manuel Marbis
-                    </span>
+                <h1
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    fontWeight: 800,
+                    fontSize: "clamp(2.5rem, 6vw, 4.5rem)",
+                    lineHeight: 1.05,
+                    color: "var(--color-text-primary)",
+                  }}
+                >
+                  Juan Manuel
+                  <br />
+                  <span
+                    style={{
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      backgroundClip: "text",
+                      background: "linear-gradient(135deg, #5BA4FF 0%, #00C9A7 50%, #5BA4FF 100%)",
+                      backgroundSize: "200% auto",
+                      animation: "gradient-shift 5s linear infinite",
+                      display: "inline-block",
+                    }}
+                  >
+                    Marbis
                   </span>
                 </h1>
-                <div className="absolute -z-10 top-1/2 -translate-y-1/2 left-1/4 w-24 sm:w-32 h-24 sm:h-32 bg-blue-500/20 rounded-full blur-2xl animate-pulse"></div>
               </div>
 
               {/* Role badge */}
-              <div className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-2 sm:py-3 rounded-xl sm:rounded-2xl bg-gradient-to-r from-blue-500/10 to-teal-500/10 border border-blue-500/20 mb-6 sm:mb-8 backdrop-blur-sm animate__animated animate__fadeInUp animate__delay-1s">
-                <i className="fas fa-rocket text-blue-400 animate-bounce text-sm sm:text-base"></i>
-                <span>
-                  <FlipWords
-                    className={"text-lg sm:text-xl text-blue-400 font-medium"}
-                    words={words}
-                  />
+              <div
+                className="inline-flex items-center gap-2 sm:gap-3 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl mb-4 animate__animated animate__fadeInUp animate__delay-1s"
+                style={{
+                  background: "rgba(43,127,255,0.08)",
+                  border: "1px solid var(--color-border-active)",
+                }}
+              >
+                <i
+                  className="fas fa-chart-line text-sm sm:text-base"
+                  style={{ color: "var(--color-primary-light)" }}
+                />
+                <span
+                  style={{
+                    fontFamily: "var(--font-body)",
+                    fontSize: "clamp(0.875rem, 1.5vw, 1.125rem)",
+                    color: "var(--color-primary-light)",
+                    fontWeight: 500,
+                  }}
+                >
+                  Data Analyst &amp; BI Developer · Barcelona
                 </span>
+              </div>
+
+              {/* Short description */}
+              <p
+                style={{
+                  fontFamily: "var(--font-body)",
+                  fontSize: "1rem",
+                  color: "var(--color-text-secondary)",
+                  maxWidth: "480px",
+                  marginBottom: "1.5rem",
+                  lineHeight: 1.7,
+                }}
+                className="animate__animated animate__fadeInUp animate__delay-1s"
+              >
+                Turning raw data into strategic decisions — BI development,
+                ETL pipelines, and ML modeling from concept to deployment.
+              </p>
+
+              {/* KPI strip */}
+              <div
+                className="animate__animated animate__fadeInUp animate__delay-1s"
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(3, 1fr)",
+                  border: "1px solid var(--color-border)",
+                  borderRadius: "var(--radius-lg)",
+                  overflow: "hidden",
+                  marginBottom: "1.25rem",
+                  maxWidth: "420px",
+                  background: "var(--color-bg-card)",
+                }}
+              >
+                {kpis.map((kpi, i) => (
+                  <div
+                    key={i}
+                    style={{
+                      padding: "0.875rem 0.75rem",
+                      borderRight: i < 2 ? "1px solid var(--color-border)" : "none",
+                      textAlign: "center",
+                    }}
+                  >
+                    <div
+                      style={{
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "1.375rem",
+                        fontWeight: 700,
+                        color: kpi.color,
+                      }}
+                    >
+                      {kpi.value}
+                    </div>
+                    <div
+                      style={{
+                        fontFamily: "var(--font-body)",
+                        fontSize: "0.65rem",
+                        color: "var(--color-text-muted)",
+                        marginTop: "0.25rem",
+                        letterSpacing: "0.03em",
+                        textTransform: "uppercase",
+                      }}
+                    >
+                      {kpi.label}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Skill tag strip */}
+              <div
+                className="animate__animated animate__fadeInUp animate__delay-1s"
+                style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", marginBottom: "2rem" }}
+              >
+                {skillTags.map((tag) => (
+                  <span
+                    key={tag}
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "0.7rem",
+                      padding: "0.25rem 0.625rem",
+                      borderRadius: "var(--radius-pill)",
+                      border: "1px solid var(--color-border-active)",
+                      color: "var(--color-text-accent)",
+                      background: "var(--color-primary-glow)",
+                    }}
+                  >
+                    {tag}
+                  </span>
+                ))}
               </div>
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 animate__animated animate__fadeInUp animate__delay-2s">
-                {/* View Projects Button */}
                 <a
-                  href="https://github.com/seraprogrammer"
-                  className="group relative inline-flex items-center justify-center gap-3 bg-gradient-to-r from-blue-500 to-teal-400 p-0.5 rounded-xl transition-all duration-300 hover:scale-105 hover:shadow-[0_0_2rem_-0.5rem_#60A5FA]"
+                  href="https://github.com/jmarbis1703"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative inline-flex items-center justify-center gap-3 p-0.5 rounded-xl transition-all duration-300 hover:scale-105"
+                  style={{ background: "linear-gradient(135deg, var(--color-primary), var(--color-teal))" }}
                 >
-                  <span className="block w-full px-6 sm:px-8 py-3 sm:py-4 rounded-[11px] bg-gray-900 transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-blue-500 group-hover:to-teal-400">
+                  <span
+                    className="block w-full px-6 sm:px-8 py-3 sm:py-4 rounded-[11px] transition-all duration-300"
+                    style={{ background: "var(--color-bg-surface)" }}
+                    onMouseEnter={(e) => (e.currentTarget.style.background = "transparent")}
+                    onMouseLeave={(e) => (e.currentTarget.style.background = "var(--color-bg-surface)")}
+                  >
                     <span className="relative flex items-center justify-center gap-2 text-white font-medium">
-                      <span>Learn More</span>
-                      <i className="fas fa-arrow-right transform transition-all duration-300 group-hover:translate-x-1"></i>
+                      <i className="fab fa-github" />
+                      <span>GitHub</span>
+                      <i className="fas fa-arrow-right transform transition-all duration-300 group-hover:translate-x-1" />
                     </span>
                   </span>
                 </a>
 
-                {/* Contact Button */}
                 <a
-                  href="#"
-                  className="group relative inline-flex items-center justify-center gap-3 p-0.5 rounded-xl bg-gradient-to-r from-gray-800 to-gray-700 transition-all duration-300 hover:scale-105 hover:shadow-[0_0_2rem_-0.5rem_#60A5FA]"
+                  href="/Juan Marbis CV.pdf"
+                  className="group relative inline-flex items-center justify-center gap-3 p-0.5 rounded-xl transition-all duration-300 hover:scale-105"
+                  style={{ background: "linear-gradient(135deg, var(--color-primary), var(--color-teal))" }}
                 >
-                  <span className="block w-full px-6 sm:px-8 py-3 sm:py-4 rounded-[11px] bg-gray-900 border border-gray-700/50 transition-all duration-300 group-hover:bg-gradient-to-r group-hover:from-gray-800 group-hover:to-gray-700">
-                    <span className="relative flex items-center justify-center gap-2 text-gray-300 font-medium group-hover:text-white">
+                  <span
+                    className="block w-full px-6 sm:px-8 py-3 sm:py-4 rounded-[11px] transition-all duration-300"
+                    style={{ background: "var(--color-bg-surface)" }}
+                    onMouseEnter={(e) => (e.currentTarget.style.background = "transparent")}
+                    onMouseLeave={(e) => (e.currentTarget.style.background = "var(--color-bg-surface)")}
+                  >
+                    <span className="relative flex items-center justify-center gap-2 text-white font-medium">
                       <span>Get Resume</span>
-                      <i className="fas fa-envelope transform transition-all duration-300 group-hover:rotate-12"></i>
+                      <i className="fas fa-download transform transition-all duration-300 group-hover:translate-y-1" />
                     </span>
                   </span>
                 </a>
-              </div>
-
-              {/* Floating badges */}
-              <div className="hidden lg:block absolute left-[5.5rem] top-[2.3rem] animate-float-slow">
-                <div className="px-4 py-2 rounded-lg bg-purple-500/10 backdrop-blur-sm border border-purple-500/20 text-purple-400">
-                  <i className="fas fa-wand-magic-sparkles"></i>&nbsp;&nbsp;Modeling
-                  Magic
-                </div>
-              </div>
-              <div className="hidden lg:block absolute right-10 top-20 animate-float">
-                <div className="px-4 py-2 rounded-lg bg-blue-500/10 backdrop-blur-sm border border-blue-500/20 text-blue-400">
-                  <i className="fas fa-code"></i>&nbsp;&nbsp;Statistical Analysis
-                </div>
-              </div>
-              <div className="hidden lg:block absolute top-[17rem] left-[70%] transform -translate-x-1/2 animate-float">
-                <div className="px-4 py-2 rounded-lg bg-amber-500/10 backdrop-blur-sm border border-amber-500/20 text-amber-400">
-                  <i className="fas fa-lightbulb"></i>&nbsp;&nbsp;Feature Engineering
-                </div>
               </div>
             </div>
 
-            {/* Right column - Code window */}
+            {/* ── Right column — Python code window ── */}
             <div className="w-full lg:w-1/2 animate__animated animate__fadeInDown animate__delay-0.1s">
               <div className="gradient-border">
-                <div className="code-window bg-[#091121]">
+                <div className="code-window" style={{ background: "#091121" }}>
                   <div className="window-header">
-                    <div className="window-dot bg-red-500"></div>
-                    <div className="window-dot bg-yellow-500"></div>
-                    <div className="window-dot bg-green-500"></div>
-                    <span className="ml-2 text-sm text-gray-400 flex items-center gap-2">
-                      <i className="fas fa-code"></i>
+                    <div className="window-dot bg-red-500" />
+                    <div className="window-dot bg-yellow-500" />
+                    <div className="window-dot bg-green-500" />
+                    <span className="ml-2 flex items-center gap-2">
+                      <i className="fas fa-code" style={{ color: "var(--color-text-muted)" }} />
+                      <span
+                        style={{
+                          fontFamily: "var(--font-mono)",
+                          fontSize: "12px",
+                          color: "var(--color-teal-light)",
+                        }}
+                      >
+                        analyst_profile.py
+                      </span>
                     </span>
                   </div>
-                  <pre className="language-javascript">
-                    <code className="language-javascript">{code}</code>
+                  <pre className="language-python">
+                    <code className="language-python">{code}</code>
                   </pre>
                 </div>
               </div>
@@ -270,16 +335,19 @@ const profile = {
         </section>
 
         {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce flex flex-col items-center gap-2">
-          <span className="text-gray-400 text-sm flex items-center gap-2">
-            <i className="fas fa-mouse text-blue-400"></i>
+        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce flex flex-col items-center gap-4">
+          <span
+            className="text-2xl font-bold flex items-center gap-4 tracking-wide"
+            style={{ color: "var(--color-text-secondary)" }}
+          >
+            <i className="fas fa-mouse text-2xl" style={{ color: "var(--color-primary-light)" }} />
             About me
           </span>
-          <i className="fas fa-chevron-down text-blue-400 text-xl"></i>
+          <i className="fas fa-chevron-down text-5xl opacity-80" style={{ color: "var(--color-primary-light)" }} />
         </div>
+
         <PortfolioPage />
       </main>
     </>
   );
 }
-

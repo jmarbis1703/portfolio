@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================================
+   KEYFRAMES
+   ============================================================ */
+
 @keyframes float-slow {
   0%,
   100% {
@@ -9,6 +13,16 @@
   }
   50% {
     transform: translateY(-10px) rotate(-1deg);
+  }
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
   }
 }
 
@@ -24,8 +38,96 @@
   }
 }
 
+/* Fix: was referenced in Header/Experience but never defined */
+@keyframes gradient-xy {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes blink {
+  from,
+  to {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes skillFill {
+  from {
+    width: 0%;
+  }
+  to {
+    width: var(--skill-level);
+  }
+}
+
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes sectionEntrance {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cursorBlink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  75%,
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes gridPulse {
+  0%,
+  100% {
+    opacity: 0.05;
+  }
+  50% {
+    opacity: 0.12;
+  }
+}
+
+/* ============================================================
+   COMPONENT CLASSES
+   ============================================================ */
+
 .gradient-text {
-  background: linear-gradient(90deg, #60a5fa, #34d399, #60a5fa);
+  background: linear-gradient(90deg, var(--color-primary-light), var(--color-teal), var(--color-primary-light));
   background-size: 200% auto;
   animation: gradient-shift 4s linear infinite;
   -webkit-background-clip: text;
@@ -34,7 +136,7 @@
 
 .gradient-border {
   position: relative;
-  background: linear-gradient(45deg, #60a5fa, #34d399);
+  background: linear-gradient(135deg, var(--color-primary), var(--color-teal));
   padding: 2px;
   border-radius: 0.75rem;
 }
@@ -50,7 +152,7 @@
   height: 2px;
   bottom: -4px;
   left: 0;
-  background: linear-gradient(45deg, #60a5fa, #34d399);
+  background: linear-gradient(90deg, var(--color-primary), var(--color-teal));
   transition: width 0.3s ease;
 }
 
@@ -66,7 +168,7 @@
 }
 
 .window-header {
-  background: #0b466359;
+  background: rgba(11, 70, 99, 0.35);
   padding: 0.75rem;
   display: flex;
   align-items: center;
@@ -92,39 +194,45 @@
   animation: float 6s ease-in-out infinite;
 }
 
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
+.animate-gradient-xy {
+  animation: gradient-xy 6s ease infinite;
+  background-size: 200% 200%;
+}
+
+.animate-gradient-x {
+  animation: gradient-shift 4s linear infinite;
+  background-size: 200% auto;
 }
 
 .typing-effect::after {
   content: "|";
   animation: blink 1s step-end infinite;
   margin-left: 2px;
-  color: #60a5fa;
+  color: var(--color-primary-light);
 }
 
-@keyframes blink {
-  from,
-  to {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
+/* Skill bar fill — triggered on scroll via IntersectionObserver */
+.skill-bar-fill {
+  animation: skillFill 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation-delay: calc(var(--skill-index, 0) * 0.1s);
 }
 
-/* Enhanced Prism.js styling */
+/* KPI number count-up */
+.kpi-value {
+  animation: countUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) both;
+  animation-delay: calc(var(--kpi-index, 0) * 0.15s);
+}
+
+/* ============================================================
+   PRISM.JS SYNTAX HIGHLIGHTING
+   ============================================================ */
+
 pre[class*="language-"] {
   background: #091121 !important;
   padding: 1.5rem !important;
   margin: 0 !important;
-  font-size: 0.95rem !important;
+  font-size: 0.875rem !important;
+  font-family: var(--font-mono) !important;
 }
 
 .token.comment {
@@ -144,59 +252,146 @@ pre[class*="language-"] {
   color: #66e7ff !important;
 }
 
+.token.number {
+  color: var(--color-amber) !important;
+}
+
+.token.boolean {
+  color: var(--color-teal) !important;
+}
+
+.token.operator {
+  color: var(--color-text-secondary) !important;
+}
+
+/* ============================================================
+   @layer base — DESIGN TOKENS + shadcn COMPATIBILITY
+   ============================================================ */
+
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
-    --destructive: 0 84.2% 60.2%;
+    /* === BRAND BACKGROUND SCALE === */
+    --color-bg-abyss:     #050B18;
+    --color-bg-surface:   #0A1628;
+    --color-bg-card:      #0F1E35;
+    --color-bg-elevated:  #162340;
+    --color-border:       #1E3254;
+    --color-border-active:#1E4A7A;
+
+    /* === BRAND COLORS === */
+    --color-primary:      #2B7FFF;
+    --color-primary-light:#5BA4FF;
+    --color-primary-glow: rgba(43, 127, 255, 0.15);
+
+    --color-teal:         #00C9A7;
+    --color-teal-light:   #4DDFC4;
+    --color-violet:       #7B5EA7;
+    --color-amber:        #F59E0B;
+    --color-emerald:      #10B981;
+    --color-red:          #EF4444;
+
+    /* === TEXT SCALE === */
+    --color-text-primary: #F1F5F9;
+    --color-text-secondary:#94A3B8;
+    --color-text-muted:   #4B6070;
+    --color-text-accent:  #5BA4FF;
+
+    /* === DATA VIZ PALETTE === */
+    --viz-1: #2B7FFF;
+    --viz-2: #00C9A7;
+    --viz-3: #7B5EA7;
+    --viz-4: #F59E0B;
+    --viz-5: #EF4444;
+    --viz-6: #8B5CF6;
+
+    /* === TYPOGRAPHY === */
+    --font-display: 'Syne', sans-serif;
+    --font-body:    'Inter', sans-serif;
+    --font-mono:    'JetBrains Mono', monospace;
+
+    /* === SPACING SCALE === */
+    --space-xs:  0.25rem;
+    --space-sm:  0.5rem;
+    --space-md:  1rem;
+    --space-lg:  1.5rem;
+    --space-xl:  2rem;
+    --space-2xl: 3rem;
+    --space-3xl: 4rem;
+    --space-4xl: 6rem;
+    --space-5xl: 8rem;
+
+    /* === BORDER RADIUS === */
+    --radius-sm:  4px;
+    --radius-md:  8px;
+    --radius-lg:  12px;
+    --radius-xl:  16px;
+    --radius-2xl: 24px;
+    --radius-pill:9999px;
+
+    /* === SHADOWS === */
+    --shadow-card:         0 4px 24px rgba(5, 11, 24, 0.6);
+    --shadow-glow-primary: 0 0 40px rgba(43, 127, 255, 0.2);
+    --shadow-glow-teal:    0 0 40px rgba(0, 201, 167, 0.15);
+
+    /* === TRANSITIONS === */
+    --transition-fast:   150ms ease;
+    --transition-normal: 300ms ease;
+    --transition-slow:   600ms ease;
+
+    /* === shadcn COMPATIBILITY (mapped to brand values) === */
+    --background:             222 47% 6%;
+    --foreground:             210 40% 95%;
+    --card:                   222 47% 9%;
+    --card-foreground:        210 40% 95%;
+    --popover:                222 47% 9%;
+    --popover-foreground:     210 40% 95%;
+    --primary:                217 100% 59%;
+    --primary-foreground:     0 0% 100%;
+    --secondary:              217 30% 16%;
+    --secondary-foreground:   210 40% 95%;
+    --muted:                  217 30% 16%;
+    --muted-foreground:       215 20% 55%;
+    --accent:                 217 30% 22%;
+    --accent-foreground:      210 40% 95%;
+    --destructive:            0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
+    --border:                 217 30% 22%;
+    --input:                  217 30% 22%;
+    --ring:                   217 100% 59%;
+    --chart-1:                217 100% 59%;
+    --chart-2:                168 100% 40%;
+    --chart-3:                39 96% 50%;
+    --chart-4:                271 76% 53%;
+    --chart-5:                0 84% 60%;
+    --radius:                 0.5rem;
   }
+
+  /* Portfolio is always dark — mirror values into .dark for shadcn compatibility */
   .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
+    --background:             222 47% 6%;
+    --foreground:             210 40% 95%;
+    --card:                   222 47% 9%;
+    --card-foreground:        210 40% 95%;
+    --popover:                222 47% 9%;
+    --popover-foreground:     210 40% 95%;
+    --primary:                217 100% 59%;
+    --primary-foreground:     0 0% 100%;
+    --secondary:              217 30% 16%;
+    --secondary-foreground:   210 40% 95%;
+    --muted:                  217 30% 16%;
+    --muted-foreground:       215 20% 55%;
+    --accent:                 217 30% 22%;
+    --accent-foreground:      210 40% 95%;
+    --destructive:            0 84% 60%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    --border:                 217 30% 22%;
+    --input:                  217 30% 22%;
+    --ring:                   217 100% 59%;
+    --chart-1:                217 100% 59%;
+    --chart-2:                168 100% 40%;
+    --chart-3:                39 96% 50%;
+    --chart-4:                271 76% 53%;
+    --chart-5:                0 84% 60%;
   }
 }
 
@@ -206,15 +401,20 @@ pre[class*="language-"] {
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-body);
   }
 }
-/* Add these classes to adjust the grid colors in the top-left and bottom-right */
+
+/* ============================================================
+   GRID / BACKGROUND UTILITIES
+   ============================================================ */
+
 .top-left-grid {
-  background-color: white;
-  opacity: 0.8; /* Make it more visible */
+  background-color: var(--color-primary);
+  opacity: 0.06;
 }
 
 .bottom-right-grid {
-  background-color: white;
-  opacity: 0.8; /* Make it more visible */
+  background-color: var(--color-primary);
+  opacity: 0.06;
 }
