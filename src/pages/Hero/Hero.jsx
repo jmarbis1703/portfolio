@@ -87,120 +87,72 @@ def build_profile():
           </div>
 
           {/* Ambient glows */}
-          <div
-            className="absolute pointer-events-none"
-            style={{
-              top: "20%", left: "5%",
-              width: "400px", height: "400px",
-              background: "radial-gradient(circle, var(--color-primary-glow), transparent)",
-              borderRadius: "50%", filter: "blur(80px)",
-            }}
-          />
-          <div
-            className="absolute pointer-events-none"
-            style={{
-              bottom: "20%", right: "5%",
-              width: "350px", height: "350px",
-              background: "rgba(0,201,167,0.07)",
-              borderRadius: "50%", filter: "blur(80px)",
-            }}
-          />
+          <div className="absolute pointer-events-none" style={{ top: "15%", left: "3%", width: "420px", height: "420px", background: "radial-gradient(circle, var(--color-primary-glow), transparent)", borderRadius: "50%", filter: "blur(90px)" }} />
+          <div className="absolute pointer-events-none" style={{ bottom: "15%", right: "3%", width: "360px", height: "360px", background: "rgba(0,201,167,0.07)", borderRadius: "50%", filter: "blur(90px)" }} />
 
           {/* ── Two-column layout ── */}
-          <div className="container mx-auto relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center py-20 md:py-28">
+          <div className="container mx-auto relative z-10 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center py-24 md:py-0 md:min-h-screen">
 
-            {/* ── Left: Text content ── */}
+            {/* ── Left: Text ── */}
             <div className="flex flex-col items-start animate__animated animate__fadeInLeft">
 
               {/* Role badge */}
               <div
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8"
-                style={{
-                  background: "rgba(43,127,255,0.08)",
-                  border: "1px solid var(--color-border-active)",
-                }}
+                className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full mb-5"
+                style={{ background: "rgba(43,127,255,0.08)", border: "1px solid var(--color-border-active)" }}
               >
                 <i className="fas fa-chart-line text-xs" style={{ color: "var(--color-teal)" }} />
-                <span
-                  style={{
-                    fontFamily: "var(--font-mono)",
-                    fontSize: "0.75rem",
-                    color: "var(--color-teal)",
-                    fontWeight: 500,
-                    letterSpacing: "0.06em",
-                  }}
-                >
+                <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.72rem", color: "var(--color-teal)", fontWeight: 500, letterSpacing: "0.06em" }}>
                   Data Analyst &amp; BI Developer · Barcelona
                 </span>
               </div>
 
               {/* Name */}
-              <h1
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontWeight: 800,
-                  lineHeight: 1.0,
-                  letterSpacing: "-0.02em",
-                  marginBottom: "1.75rem",
-                }}
-              >
-                <span
+              <div style={{ marginBottom: "1rem" }}>
+                <h1
                   style={{
-                    display: "block",
-                    fontSize: "clamp(2.75rem, 5.5vw, 5rem)",
-                    color: "var(--color-text-primary)",
-                    marginBottom: "0.1em",
+                    fontFamily: "var(--font-display)",
+                    fontWeight: 800,
+                    lineHeight: 1.0,
+                    letterSpacing: "-0.02em",
                   }}
                 >
-                  Juan Marbis
-                </span>
-                <span
-                  style={{
-                    display: "block",
-                    fontSize: "clamp(2.75rem, 5.5vw, 5rem)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                    background: "linear-gradient(135deg, #5BA4FF 0%, #00C9A7 55%, #5BA4FF 100%)",
-                    backgroundSize: "200% auto",
-                    animation: "gradient-shift 5s linear infinite",
-                  }}
-                >
-                  Marbis
-                </span>
-              </h1>
+                  <span style={{ display: "block", fontSize: "clamp(2.75rem, 5.5vw, 5.25rem)", color: "var(--color-text-primary)" }}>
+                    Juan Manuel
+                  </span>
+                  <span
+                    style={{
+                      display: "block",
+                      fontSize: "clamp(2.75rem, 5.5vw, 5.25rem)",
+                      WebkitBackgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                      backgroundClip: "text",
+                      background: "linear-gradient(135deg, #5BA4FF 0%, #00C9A7 55%, #5BA4FF 100%)",
+                      backgroundSize: "200% auto",
+                      animation: "gradient-shift 5s linear infinite",
+                    }}
+                  >
+                    Marbis
+                  </span>
+                </h1>
+                <div style={{ width: "56px", height: "3px", background: "linear-gradient(90deg, #5BA4FF, #00C9A7)", borderRadius: "2px", marginTop: "0.6rem" }} />
+              </div>
 
               {/* Description */}
-              <p
-                style={{
-                  fontFamily: "var(--font-body)",
-                  fontSize: "1.0625rem",
-                  color: "var(--color-text-secondary)",
-                  lineHeight: 1.75,
-                  marginBottom: "1.75rem",
-                  maxWidth: "440px",
-                }}
-              >
-                Turning raw data into strategic decisions, BI development,
+              <p style={{ fontFamily: "var(--font-body)", fontSize: "1rem", color: "var(--color-text-secondary)", lineHeight: 1.7, marginBottom: "1.25rem", maxWidth: "420px" }}>
+                Turning raw data into strategic decisions — BI development,
                 ETL pipelines, and ML modeling from concept to deployment.
               </p>
 
               {/* Skill tags */}
-              <div
-                style={{
-                  display: "flex",
-                  gap: "0.5rem",
-                  flexWrap: "wrap",
-                  marginBottom: "2.25rem",
-                }}
-              >
+              <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap", marginBottom: "1.75rem" }}>
                 {skillTags.map((tag) => (
                   <span
                     key={tag}
                     style={{
                       fontFamily: "var(--font-mono)",
-                      fontSize: "0.68rem",
-                      padding: "0.3rem 0.7rem",
+                      fontSize: "0.66rem",
+                      padding: "0.25rem 0.6rem",
                       borderRadius: "var(--radius-pill)",
                       border: "1px solid var(--color-border-active)",
                       color: "var(--color-text-accent)",
@@ -213,7 +165,7 @@ def build_profile():
               </div>
 
               {/* CTAs */}
-              <div className="flex flex-row gap-4">
+              <div className="flex flex-row gap-3">
                 <a
                   href="https://github.com/jmarbis1703"
                   target="_blank"
@@ -222,7 +174,7 @@ def build_profile():
                   style={{ background: "linear-gradient(135deg, var(--color-primary), var(--color-teal))" }}
                 >
                   <span
-                    className="block px-7 py-3 rounded-[11px] transition-all duration-300"
+                    className="block px-6 py-2.5 rounded-[11px] transition-all duration-300"
                     style={{ background: "var(--color-bg-surface)" }}
                     onMouseEnter={(e) => (e.currentTarget.style.background = "transparent")}
                     onMouseLeave={(e) => (e.currentTarget.style.background = "var(--color-bg-surface)")}
@@ -241,7 +193,7 @@ def build_profile():
                   style={{ background: "linear-gradient(135deg, var(--color-primary), var(--color-teal))" }}
                 >
                   <span
-                    className="block px-7 py-3 rounded-[11px] transition-all duration-300"
+                    className="block px-6 py-2.5 rounded-[11px] transition-all duration-300"
                     style={{ background: "var(--color-bg-surface)" }}
                     onMouseEnter={(e) => (e.currentTarget.style.background = "transparent")}
                     onMouseLeave={(e) => (e.currentTarget.style.background = "var(--color-bg-surface)")}
@@ -265,13 +217,7 @@ def build_profile():
                     <div className="window-dot bg-green-500" />
                     <span className="ml-2 flex items-center gap-2">
                       <i className="fas fa-code" style={{ color: "var(--color-text-muted)" }} />
-                      <span
-                        style={{
-                          fontFamily: "var(--font-mono)",
-                          fontSize: "12px",
-                          color: "var(--color-teal-light)",
-                        }}
-                      >
+                      <span style={{ fontFamily: "var(--font-mono)", fontSize: "12px", color: "var(--color-teal-light)" }}>
                         analyst_profile.py
                       </span>
                     </span>
@@ -286,19 +232,11 @@ def build_profile():
           </div>
 
           {/* Scroll indicator */}
-          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce flex flex-col items-center gap-1">
-            <span
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontSize: "1.2rem",
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-                color: "var(--color-text-muted)",
-              }}
-            >
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 animate-bounce flex flex-col items-center gap-1">
+            <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.6rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--color-text-muted)" }}>
               scroll
             </span>
-            <i className="fas fa-chevron-down" style={{ color: "var(--color-primary-light)", opacity: 0.6 }} />
+            <i className="fas fa-chevron-down" style={{ color: "var(--color-primary-light)", opacity: 0.5, fontSize: "0.9rem" }} />
           </div>
         </section>
 
