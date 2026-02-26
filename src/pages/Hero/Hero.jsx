@@ -30,6 +30,13 @@ const skillTags = [
   "Statistical Modeling",
 ];
 
+/* Shared button style — outer gradient wrapper */
+const btnOuter = {
+  background: "linear-gradient(135deg, var(--color-primary), var(--color-teal))",
+};
+/* Inner fill that fades on hover */
+const btnInner = { background: "var(--color-bg-surface)" };
+
 export default function Hero() {
   const [code] = useState(
 `# analyst_profile.py
@@ -58,17 +65,13 @@ def build_profile():
     Prism.highlightAll();
 
     const checkResolution = () => {
-      const isTargetResolution =
-        window.innerWidth >= 1360 &&
-        window.innerWidth <= 1370 &&
-        window.innerHeight >= 760 &&
-        window.innerHeight <= 775;
+      const target =
+        window.innerWidth >= 1360 && window.innerWidth <= 1370 &&
+        window.innerHeight >= 760  && window.innerHeight <= 775;
       document.documentElement.style.setProperty(
-        "--hero-padding-top",
-        isTargetResolution ? "10rem" : "0"
+        "--hero-padding-top", target ? "10rem" : "0"
       );
     };
-
     checkResolution();
     window.addEventListener("resize", checkResolution);
     return () => window.removeEventListener("resize", checkResolution);
@@ -78,23 +81,24 @@ def build_profile():
     <>
       <main style={{ background: "var(--color-bg-abyss)" }} className="text-white min-h-screen">
         <section
-          className="min-h-screen flex items-center relative px-6 lg:px-12"
+          className="min-h-screen flex items-center relative overflow-hidden px-6 lg:px-12"
           style={{ paddingTop: "var(--hero-padding-top, 0)" }}
         >
           <GridBackground />
+
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
             <Meteors number={10} />
           </div>
 
           {/* Ambient glows */}
-          <div className="absolute pointer-events-none" style={{ top: "15%", left: "3%", width: "420px", height: "420px", background: "radial-gradient(circle, var(--color-primary-glow), transparent)", borderRadius: "50%", filter: "blur(90px)" }} />
-          <div className="absolute pointer-events-none" style={{ bottom: "15%", right: "3%", width: "360px", height: "360px", background: "rgba(0,201,167,0.07)", borderRadius: "50%", filter: "blur(90px)" }} />
+          <div className="absolute pointer-events-none" style={{ top: "15%", left: "3%", width: "clamp(200px,30vw,420px)", height: "clamp(200px,30vw,420px)", background: "radial-gradient(circle, var(--color-primary-glow), transparent)", borderRadius: "50%", filter: "blur(90px)" }} />
+          <div className="absolute pointer-events-none" style={{ bottom: "15%", right: "3%", width: "clamp(180px,25vw,360px)", height: "clamp(180px,25vw,360px)", background: "rgba(0,201,167,0.07)", borderRadius: "50%", filter: "blur(90px)" }} />
 
-          {/* ── Two-column layout ── */}
-          <div className="container mx-auto relative z-10 grid lg:grid-cols-2 gap-8 lg:gap-12 items-center py-24 md:py-0 md:min-h-screen">
+          {/* ── Two-column grid ── */}
+          <div className="container mx-auto relative z-10 w-full grid lg:grid-cols-2 gap-10 lg:gap-14 items-center py-28 lg:py-0 lg:min-h-screen">
 
             {/* ── Left: Text ── */}
-            <div className="flex flex-col items-start animate__animated animate__fadeInLeft">
+            <div className="flex flex-col items-start w-full animate__animated animate__fadeInLeft">
 
               {/* Role badge */}
               <div
@@ -108,100 +112,85 @@ def build_profile():
               </div>
 
               {/* Name */}
-              <div style={{ marginBottom: "1rem" }}>
-                <h1
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontWeight: 800,
-                    lineHeight: 1.0,
-                    letterSpacing: "-0.02em",
-                  }}
-                >
-                  <span style={{ display: "block", fontSize: "clamp(2.75rem, 5.5vw, 5.25rem)", color: "var(--color-text-primary)" }}>
+              <div className="w-full mb-4">
+                <h1 style={{ fontFamily: "var(--font-display)", fontWeight: 800, lineHeight: 1.0, letterSpacing: "-0.02em" }}>
+                  <span style={{ display: "block", fontSize: "clamp(2.5rem, 5.5vw, 5.25rem)", color: "var(--color-text-primary)" }}>
                     Juan Manuel
                   </span>
-                  <span
-                    style={{
-                      display: "block",
-                      fontSize: "clamp(2.75rem, 5.5vw, 5.25rem)",
-                      WebkitBackgroundClip: "text",
-                      WebkitTextFillColor: "transparent",
-                      backgroundClip: "text",
-                      background: "linear-gradient(135deg, #5BA4FF 0%, #00C9A7 55%, #5BA4FF 100%)",
-                      backgroundSize: "200% auto",
-                      animation: "gradient-shift 5s linear infinite",
-                    }}
-                  >
+                  <span style={{
+                    display: "block",
+                    fontSize: "clamp(2.5rem, 5.5vw, 5.25rem)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                    background: "linear-gradient(135deg, #5BA4FF 0%, #00C9A7 55%, #5BA4FF 100%)",
+                    backgroundSize: "200% auto",
+                    animation: "gradient-shift 5s linear infinite",
+                  }}>
                     Marbis
                   </span>
                 </h1>
                 <div style={{ width: "56px", height: "3px", background: "linear-gradient(90deg, #5BA4FF, #00C9A7)", borderRadius: "2px", marginTop: "0.6rem" }} />
               </div>
 
-              {/* Description */}
-              <p style={{ fontFamily: "var(--font-body)", fontSize: "1rem", color: "var(--color-text-secondary)", lineHeight: 1.7, marginBottom: "1.25rem", maxWidth: "420px" }}>
-                Turning raw data into strategic decisions — BI development,
+              {/* Description — no fixed maxWidth, flows with column */}
+              <p className="w-full mb-5" style={{ fontFamily: "var(--font-body)", fontSize: "clamp(0.9rem, 1.5vw, 1.0625rem)", color: "var(--color-text-secondary)", lineHeight: 1.75, maxWidth: "52ch" }}>
+                Turning raw data into strategic decisions, BI development,
                 ETL pipelines, and ML modeling from concept to deployment.
               </p>
 
               {/* Skill tags */}
-              <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap", marginBottom: "1.75rem" }}>
+              <div className="w-full mb-6" style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap" }}>
                 {skillTags.map((tag) => (
-                  <span
-                    key={tag}
-                    style={{
-                      fontFamily: "var(--font-mono)",
-                      fontSize: "0.66rem",
-                      padding: "0.25rem 0.6rem",
-                      borderRadius: "var(--radius-pill)",
-                      border: "1px solid var(--color-border-active)",
-                      color: "var(--color-text-accent)",
-                      background: "var(--color-primary-glow)",
-                    }}
-                  >
+                  <span key={tag} style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "clamp(0.6rem, 1vw, 0.68rem)",
+                    padding: "0.25rem 0.6rem",
+                    borderRadius: "var(--radius-pill)",
+                    border: "1px solid var(--color-border-active)",
+                    color: "var(--color-text-accent)",
+                    background: "var(--color-primary-glow)",
+                    whiteSpace: "nowrap",
+                  }}>
                     {tag}
                   </span>
                 ))}
               </div>
 
-              {/* CTAs */}
-              <div className="flex flex-row gap-3">
+              {/* CTAs — equal width, wrap on small screens */}
+              <div className="flex flex-wrap gap-3 w-full sm:w-auto">
                 <a
                   href="https://github.com/jmarbis1703"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center justify-center p-0.5 rounded-xl transition-all duration-300 hover:scale-105"
-                  style={{ background: "linear-gradient(135deg, var(--color-primary), var(--color-teal))" }}
+                  className="group inline-flex flex-1 sm:flex-none items-center justify-center p-0.5 rounded-xl transition-all duration-300 hover:scale-105"
+                  style={{ ...btnOuter, minWidth: "148px" }}
                 >
                   <span
-                    className="block px-6 py-2.5 rounded-[11px] transition-all duration-300"
-                    style={{ background: "var(--color-bg-surface)" }}
+                    className="flex w-full items-center justify-center gap-2 px-6 py-2.5 rounded-[11px] text-white font-medium text-sm transition-all duration-300"
+                    style={btnInner}
                     onMouseEnter={(e) => (e.currentTarget.style.background = "transparent")}
                     onMouseLeave={(e) => (e.currentTarget.style.background = "var(--color-bg-surface)")}
                   >
-                    <span className="flex items-center gap-2 text-white font-medium text-sm">
-                      <i className="fab fa-github" />
-                      GitHub
-                      <i className="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1" />
-                    </span>
+                    <i className="fab fa-github" />
+                    GitHub
+                    <i className="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1" />
                   </span>
                 </a>
 
                 <a
                   href="/Juan Marbis CV.pdf"
-                  className="group inline-flex items-center justify-center p-0.5 rounded-xl transition-all duration-300 hover:scale-105"
-                  style={{ background: "linear-gradient(135deg, var(--color-primary), var(--color-teal))" }}
+                  className="group inline-flex flex-1 sm:flex-none items-center justify-center p-0.5 rounded-xl transition-all duration-300 hover:scale-105"
+                  style={{ ...btnOuter, minWidth: "148px" }}
                 >
                   <span
-                    className="block px-6 py-2.5 rounded-[11px] transition-all duration-300"
-                    style={{ background: "var(--color-bg-surface)" }}
+                    className="flex w-full items-center justify-center gap-2 px-6 py-2.5 rounded-[11px] text-white font-medium text-sm transition-all duration-300"
+                    style={btnInner}
                     onMouseEnter={(e) => (e.currentTarget.style.background = "transparent")}
                     onMouseLeave={(e) => (e.currentTarget.style.background = "var(--color-bg-surface)")}
                   >
-                    <span className="flex items-center gap-2 text-white font-medium text-sm">
-                      Get Resume
-                      <i className="fas fa-download transition-transform duration-300 group-hover:translate-y-1" />
-                    </span>
+                    Get Resume
+                    <i className="fas fa-download transition-transform duration-300 group-hover:translate-y-1" />
                   </span>
                 </a>
               </div>
@@ -222,9 +211,12 @@ def build_profile():
                       </span>
                     </span>
                   </div>
-                  <pre className="language-python">
-                    <code className="language-python">{code}</code>
-                  </pre>
+                  {/* overflow-x:auto prevents pre from blowing out the layout */}
+                  <div style={{ overflowX: "auto" }}>
+                    <pre className="language-python" style={{ minWidth: 0 }}>
+                      <code className="language-python">{code}</code>
+                    </pre>
+                  </div>
                 </div>
               </div>
             </div>
