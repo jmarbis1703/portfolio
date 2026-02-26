@@ -19,12 +19,6 @@ const itemVariants = {
   },
 };
 
-const stats = [
-  { metric: "3+", label: "Years hands-on data work" },
-  { metric: "5",  label: "Live data projects" },
-  { metric: "8.9", label: "Academic GPA / 10" },
-  { metric: "2",  label: "International programs" },
-];
 
 export default function About() {
   return (
@@ -193,54 +187,6 @@ export default function About() {
               </p>
             </motion.div>
 
-            {/* Stats grid */}
-            <motion.div variants={itemVariants}>
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "1fr 1fr",
-                  gap: "1px",
-                  background: "var(--color-border)",
-                  borderRadius: "var(--radius-xl)",
-                  overflow: "hidden",
-                  border: "1px solid var(--color-border)",
-                }}
-              >
-                {stats.map((s, i) => (
-                  <div
-                    key={i}
-                    style={{
-                      padding: "1.25rem",
-                      background: "var(--color-bg-card)",
-                      textAlign: "center",
-                    }}
-                  >
-                    <div
-                      style={{
-                        fontFamily: "var(--font-mono)",
-                        fontSize: "1.75rem",
-                        fontWeight: 700,
-                        color: "var(--color-primary-light)",
-                      }}
-                    >
-                      {s.metric}
-                    </div>
-                    <div
-                      style={{
-                        fontFamily: "var(--font-body)",
-                        fontSize: "0.75rem",
-                        color: "var(--color-text-muted)",
-                        marginTop: "0.25rem",
-                        textTransform: "uppercase",
-                        letterSpacing: "0.05em",
-                      }}
-                    >
-                      {s.label}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
           </div>
         </motion.div>
       </div>
