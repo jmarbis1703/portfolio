@@ -128,8 +128,8 @@ const ExperienceSection = () => {
       company: "La Salle Ramon Llull University",
       period: "2025 – Current",
       description: [
-        "Developed an end-to-end automated reporting engine that integrated real-time survey data to generate institutional schedules and visualizations, reducing manual overhead by 85%.",
-        "Engineered a centralized VBA-driven automation that executed data ingestion, PDF report generation, and automated stakeholder distribution via a single-click interface.",
+        "Reduced institutional enrollment overhead by 85% by engineering an end-to-end pipeline that replaced a weeks-long email process with a real-time survey ingestion engine. Developed a single-click VBA interface to automate course matching for 100+ students, PDF generation, and direct HR record propagation.",
+        "Currently building an academic scheduling optimization engine designed to streamline faculty assignments and timetabling across all degree programs. Including a custom decision support framework that integrates multi-dimensional constraints, including regulatory compliance, workload balancing, and resource allocation logic to reduce time to decision.",
       ],
     },
     {

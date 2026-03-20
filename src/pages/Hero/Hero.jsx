@@ -95,7 +95,7 @@ def build_profile():
           <div className="absolute pointer-events-none" style={{ bottom: "15%", right: "3%", width: "clamp(180px,25vw,360px)", height: "clamp(180px,25vw,360px)", background: "rgba(0,201,167,0.07)", borderRadius: "50%", filter: "blur(90px)" }} />
 
           {/* ── Two-column grid ── */}
-          <div className="container mx-auto relative z-10 w-full grid lg:grid-cols-2 gap-10 lg:gap-14 items-center py-28 lg:py-0 lg:min-h-screen">
+          <div className="container mx-auto relative z-10 w-full grid lg:grid-cols-2 gap-10 lg:gap-14 items-center pt-24 pb-16 lg:py-0 lg:min-h-screen">
 
             {/* ── Left: Text ── */}
             <div className="flex flex-col items-start w-full animate__animated animate__fadeInLeft">
@@ -115,7 +115,7 @@ def build_profile():
               <div className="w-full mb-4">
                 <h1 style={{ fontFamily: "var(--font-display)", fontWeight: 800, lineHeight: 1.0, letterSpacing: "-0.02em" }}>
                   <span style={{ display: "block", fontSize: "clamp(2.5rem, 5.5vw, 5.25rem)", color: "var(--color-text-primary)" }}>
-                    Juan M Marbis
+                    Juan Manuel
                   </span>
                   <span style={{
                     display: "block",
@@ -144,7 +144,7 @@ def build_profile():
                 {skillTags.map((tag) => (
                   <span key={tag} style={{
                     fontFamily: "var(--font-mono)",
-                    fontSize: "clamp(0.6rem, 1vw, 0.68rem)",
+                    fontSize: "clamp(0.65rem, 2.5vw, 0.72rem)",
                     padding: "0.25rem 0.6rem",
                     borderRadius: "var(--radius-pill)",
                     border: "1px solid var(--color-border-active)",
@@ -179,10 +179,9 @@ def build_profile():
                 </a>
 
                 <a
-                  href="/Juan-Marbis-CV.pdf"
+                  href="/Juan_Marbis_CV.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  download="Juan-Marbis-CV.pdf"
                   className="group inline-flex flex-1 sm:flex-none items-center justify-center p-0.5 rounded-xl transition-all duration-300 hover:scale-105"
                   style={{ ...btnOuter, minWidth: "148px" }}
                 >
@@ -200,7 +199,7 @@ def build_profile():
             </div>
 
             {/* ── Right: Code window ── */}
-            <div className="w-full animate__animated animate__fadeInRight">
+            <div className="hidden md:block w-full animate__animated animate__fadeInRight">
               <div className="gradient-border">
                 <div className="code-window" style={{ background: "#091121" }}>
                   <div className="window-header">
