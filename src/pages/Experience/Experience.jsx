@@ -174,7 +174,7 @@ const ExperienceSection = () => {
               color: "var(--color-teal)",
             }}
           >
-            // 02. experience
+            // 03. experience
           </span>
           <h2
             style={{

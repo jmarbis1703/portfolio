@@ -115,7 +115,7 @@ def build_profile():
               <div className="w-full mb-4">
                 <h1 style={{ fontFamily: "var(--font-display)", fontWeight: 800, lineHeight: 1.0, letterSpacing: "-0.02em" }}>
                   <span style={{ display: "block", fontSize: "clamp(2.5rem, 5.5vw, 5.25rem)", color: "var(--color-text-primary)" }}>
-                    Juan Manuel
+                    Juan M Marbis
                   </span>
                   <span style={{
                     display: "block",
@@ -179,7 +179,10 @@ def build_profile():
                 </a>
 
                 <a
-                  href="/Juan Marbis CV.pdf"
+                  href="/Juan-Marbis-CV.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  download="Juan-Marbis-CV.pdf"
                   className="group inline-flex flex-1 sm:flex-none items-center justify-center p-0.5 rounded-xl transition-all duration-300 hover:scale-105"
                   style={{ ...btnOuter, minWidth: "148px" }}
                 >
@@ -225,7 +228,7 @@ def build_profile():
 
           {/* Scroll indicator */}
           <div className="absolute bottom-6 left-1/2 -translate-x-1/2 animate-bounce flex flex-col items-center gap-1">
-            <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.6rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--color-text-muted)" }}>
+            <span style={{ fontFamily: "var(--font-mono)", fontSize: "1rem", letterSpacing: "0.2em", textTransform: "uppercase", color: "var(--color-text-muted)" }}>
               scroll
             </span>
             <i className="fas fa-chevron-down" style={{ color: "var(--color-primary-light)", opacity: 0.5, fontSize: "0.9rem" }} />

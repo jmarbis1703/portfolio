@@ -6,20 +6,9 @@ import PropTypes from "prop-types";
 import abTestImg from "../../assets/images/ab_test.png";
 import ga360Img from "../../assets/images/funnel.png";
 import neuralNetImg from "../../assets/images/neural.png";
+import dashboardImg from "../../assets/images/dashboard.png";
 
 const projects = [
-  {
-    title: "A/B Test Checkout Redesign",
-    description:
-      "Python A/B test analysis of a checkout funnel. Leveraged SRM checks and temporal lift tracking to detect a novelty effect, saving $25k by rejecting a statistically insignificant UI redesign.",
-    metric: { value: "$25K", label: "saved from false positive" },
-    techStack: ["Python", "SciPy", "Pandas", "Matplotlib"],
-    src: "checkout.jpg",
-    link: abTestImg,
-    color: "#5196fd",
-    githubLink: "https://github.com/jmarbis1703/ab-test-checkout-redesign",
-    liveLink: "https://github.com/jmarbis1703/ab-test-checkout-redesign",
-  },
   {
     title: "GA360 Funnel Analysis",
     description:
@@ -43,6 +32,30 @@ const projects = [
     color: "#8f89ff",
     githubLink: "https://github.com/jmarbis1703/from_scratch_neural_network",
     liveLink: "https://github.com/jmarbis1703/from_scratch_neural_network",
+  },
+  {
+    title: "A/B Test Checkout Redesign",
+    description:
+      "Python A/B test analysis of a checkout funnel. Leveraged SRM checks and temporal lift tracking to detect a novelty effect, saving $25k by rejecting a statistically insignificant UI redesign.",
+    metric: { value: "$25K", label: "saved from false positive" },
+    techStack: ["Python", "SciPy", "Pandas", "Matplotlib"],
+    src: "checkout.jpg",
+    link: abTestImg,
+    color: "#5196fd",
+    githubLink: "https://github.com/jmarbis1703/ab-test-checkout-redesign",
+    liveLink: "https://github.com/jmarbis1703/ab-test-checkout-redesign",
+  },
+  {
+    title: "Van Arsdel Market Intelligence Dashboard",
+    description:
+      "Power BI dashboard analyzing 15 years of multi-market sales data for VanArsdel. Integrated 808MB Access database + 765K international transactions via Power Query into a star schema, uncovering a 66% revenue decline from the 2005 peak and actionable recovery levers.",
+    metric: { value: "66%", label: "revenue decline diagnosed across 15 years" },
+    techStack: ["Power BI", "DAX", "Power Query", "Star Schema"],
+    src: "dashboard.png",
+    link: dashboardImg,
+    color: "#F59E0B",
+    githubLink: "https://github.com/jmarbis1703/sales-dashboard",
+    liveLink: "https://github.com/jmarbis1703/sales-dashboard",
   },
 ];
 
@@ -80,7 +93,7 @@ export default function Projects() {
               marginBottom: "0.5rem",
             }}
           >
-            // 03. projects
+            // 0.5 projects
           </span>
           <h2
             style={{
