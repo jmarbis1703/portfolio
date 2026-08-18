@@ -139,18 +139,20 @@ export default function About() {
                   marginBottom: "1rem",
                 }}
               >
-                Turning data into
+                Making the process
                 <br />
                 <span
                   style={{
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                    background: "linear-gradient(135deg, #5BA4FF, #00C9A7)",
                     display: "inline-block",
+                    // `background` shorthand must precede the clip/fill properties
+                    background: "linear-gradient(135deg, #5BA4FF, #00C9A7)",
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    color: "transparent",
                   }}
                 >
-                  strategic decisions
+                  carry the load
                 </span>
               </h2>
 
@@ -175,15 +177,37 @@ export default function About() {
                 <span style={{ color: "var(--color-text-primary)", fontWeight: 500 }}>
                   Juan Marbis
                 </span>
-                , a data professional focused on turning complex data into strategic value.
+                . My work is operational. I take the internal processes an organisation
+                depends on but has never formalised, establish what they actually cost,
+                and rebuild them so that{" "}
+                <span style={{ color: "var(--color-primary-light)" }}>automation and AI</span>{" "}
+                carry the load.
               </p>
               <p>
-                Working across industries has shown me that the best insights come when{" "}
-                <span style={{ color: "var(--color-primary-light)" }}>technical skills</span> and{" "}
-                <span style={{ color: "var(--color-teal-light)" }}>real business understanding</span>{" "}
-                work together. Whether it&apos;s building data pipelines or designing dashboards,
-                my goal is always the same, give people the clarity they need to make better
-                decisions.
+                The work divides into two halves of equal weight. The first is engineering:
+                AI-driven internal tooling, document ingestion, reporting automation, and
+                constraint modelling for allocation decisions. Much of it comes down to{" "}
+                <span style={{ color: "var(--color-teal-light)" }}>
+                  structuring information so that an AI system can use it reliably
+                </span>
+                . The second half determines whether any of it endures. I quantify what a
+                manual process costs before replacing it, so the result is a measurement
+                rather than a claim, I hold the output to the accuracy standard reporting
+                requires, and I train the people who inherit the system.
+              </p>
+              <p>
+                Right now that work sits inside a{" "}
+                <span style={{ color: "var(--color-primary-light)" }}>venture capital firm</span>,
+                where I also screen potential investments, research markets and competitive
+                landscapes, and support due diligence and portfolio monitoring. I lead the
+                venture capital area of my university&apos;s Finance Society alongside it, and
+                my first finance role was on the operations side, reconciling accounts and
+                keeping ERP data audit-ready.
+              </p>
+              <p>
+                The binding constraint is rarely the model. It is the data underneath, the
+                workflow that already exists around it, and whether the people using it
+                trust the output.
               </p>
             </motion.div>
 

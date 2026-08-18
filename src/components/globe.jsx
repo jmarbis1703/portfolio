@@ -1,19 +1,18 @@
 import IconCloud from "./ui/icon-cloud";
 
 const slugs = [
-  "r",
   "python",
+  "r",
   "mysql",
-  "airtable",
-  "databricks",
-  "apachespark", // No space
-  "sap",
-  "scikitlearn", // Lowercase, no dash
-  "tensorflow",
   "pandas",
   "numpy",
-  "jupyter",
-  "plotly",
+  "scikitlearn",
+  "claude",
+  "n8n",
+  "airtable",
+  "googleappsscript",
+  "databricks",
+  "sap",
   "github",
 ];
 

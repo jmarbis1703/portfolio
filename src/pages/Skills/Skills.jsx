@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import IconCloudDemo from "@/components/globe";
-import { BarChart2, Database, GitBranch, BrainCircuit, PieChart, Wrench } from "lucide-react";
+import { Bot, Database, GitBranch, BarChart2, Briefcase, Wrench } from "lucide-react";
 
 const SkillCard = ({ icon: Icon, title, skills, colorHex }) => {
   const cardRef = useRef(null);
@@ -26,12 +26,15 @@ const SkillCard = ({ icon: Icon, title, skills, colorHex }) => {
         border: "1px solid var(--color-border)",
         borderRadius: "var(--radius-xl)",
         padding: "1.5rem",
+        height: "100%",
+        display: "flex",
+        flexDirection: "column",
         transition: "border-color var(--transition-normal), box-shadow var(--transition-normal)",
         cursor: "default",
       }}
     >
       {/* Card header */}
-      <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.5rem" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.25rem" }}>
         <div
           style={{
             width: "40px",
@@ -58,121 +61,99 @@ const SkillCard = ({ icon: Icon, title, skills, colorHex }) => {
         </h3>
       </div>
 
-      {/* Proficiency bars */}
-      <div style={{ display: "flex", flexDirection: "column", gap: "0.875rem" }}>
+      {/* Skill chips */}
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "0.4rem" }}>
         {skills.map((skill) => (
-          <div key={skill.name}>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-                marginBottom: "0.375rem",
-              }}
-            >
-              <span
-                style={{
-                  fontFamily: "var(--font-body)",
-                  fontSize: "0.8rem",
-                  color: "var(--color-text-secondary)",
-                }}
-              >
-                {skill.name}
-              </span>
-              <span
-                style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "0.7rem",
-                  color: colorHex,
-                  opacity: 0.85,
-                }}
-              >
-                {skill.level}%
-              </span>
-            </div>
-            <div
-              style={{
-                height: "4px",
-                background: "var(--color-bg-elevated)",
-                borderRadius: "2px",
-                overflow: "hidden",
-              }}
-            >
-              <div
-                style={{
-                  height: "100%",
-                  width: `${skill.level}%`,
-                  background: `linear-gradient(90deg, ${colorHex}80, ${colorHex})`,
-                  borderRadius: "2px",
-                  transition: "width 1s ease",
-                }}
-              />
-            </div>
-          </div>
+          <span
+            key={skill}
+            style={{
+              fontFamily: "var(--font-body)",
+              fontSize: "0.78rem",
+              lineHeight: 1.4,
+              padding: "0.3rem 0.65rem",
+              borderRadius: "var(--radius-pill)",
+              color: "var(--color-text-secondary)",
+              background: `${colorHex}0F`,
+              border: `1px solid ${colorHex}33`,
+              whiteSpace: "nowrap",
+            }}
+          >
+            {skill}
+          </span>
         ))}
       </div>
     </div>
   );
 };
 
+/* Every entry below is backed by a row in career/SKILLS_MATRIX.md.
+   Ordered strongest-first, and balanced so the cards sit evenly in the grid. */
 const skillCategories = [
+  {
+    icon: Bot,
+    title: "AI & Automation",
+    colorHex: "#5BA4FF",
+    skills: [
+      "Process Automation",
+      "Low-Code / No-Code Automation",
+      "LLM Integration",
+      "Claude Code",
+      "AI Governance",
+      "Prompt Engineering & LLM APIs",
+    ],
+  },
+  {
+    icon: Database,
+    title: "Data Engineering",
+    colorHex: "#00C9A7",
+    skills: [
+      "Data Schema Design",
+      "Data Ingestion Pipelines",
+      "OCR & Document Processing",
+      "Data Quality & Accuracy",
+      "Data Governance",
+      "ETL Pipelines",
+    ],
+  },
+  {
+    icon: Briefcase,
+    title: "Investment & Finance Operations",
+    colorHex: "#F59E0B",
+    skills: [
+      "Deal Sourcing & Screening",
+      "Market & Competitive Research",
+      "Due Diligence",
+      "Portfolio Monitoring",
+      "Partnership Development",
+      "Financial Reconciliation",
+      "Audit Compliance",
+    ],
+  },
   {
     icon: BarChart2,
     title: "Analytics & BI",
     colorHex: "#2B7FFF",
     skills: [
-      { name: "Exploratory Data Analysis",  level: 90 },
-      { name: "KPI Definition & Tracking",  level: 85 },
-      { name: "Statistical Analysis",        level: 80 },
-      { name: "Self-Service Reporting",      level: 85 },
-      { name: "Insight Communication",       level: 88 },
-    ],
-  },
-  {
-    icon: Database,
-    title: "Data Modeling & Design",
-    colorHex: "#00C9A7",
-    skills: [
-      { name: "ER Diagram Design",      level: 85 },
-      { name: "Schema Definition",      level: 80 },
-      { name: "Query Optimization",     level: 78 },
-      { name: "Integrity Enforcement",  level: 82 },
-      { name: "Documentation",          level: 88 },
+      "Data Visualization",
+      "Dashboard Development",
+      "Self-Service Reporting",
+      "Exploratory Data Analysis",
+      "KPI Definition & Tracking",
+      "Statistical Analysis",
     ],
   },
   {
     icon: GitBranch,
-    title: "Data Engineering & ETL",
+    title: "Systems & Decision Support",
     colorHex: "#7B5EA7",
     skills: [
-      { name: "Pipeline Automation",       level: 82 },
-      { name: "Data Preprocessing",        level: 88 },
-      { name: "Transformation Workflows",  level: 80 },
-      { name: "Data Validation",           level: 85 },
-      { name: "Data Acquisition",          level: 75 },
-    ],
-  },
-  {
-    icon: BrainCircuit,
-    title: "Machine Learning",
-    colorHex: "#F59E0B",
-    skills: [
-      { name: "Predictive Modeling",   level: 78 },
-      { name: "Feature Engineering",   level: 80 },
-      { name: "Model Optimization",    level: 75 },
-      { name: "Statistical Methods",   level: 82 },
-      { name: "Model Construction",    level: 76 },
-    ],
-  },
-  {
-    icon: PieChart,
-    title: "Data Visualization",
-    colorHex: "#EF4444",
-    skills: [
-      { name: "Dashboard Development",      level: 90 },
-      { name: "Narrative Construction",     level: 85 },
-      { name: "Interactive Analytics",      level: 80 },
-      { name: "Audience-Driven Reporting",  level: 88 },
+      "Decision Support Design",
+      "Constraint / Resource Modeling",
+      "Requirements Gathering",
+      "Baseline Measurement",
+      "Process Measurement",
+      "Regulatory Compliance",
+      "Technical Training & Enablement",
     ],
   },
   {
@@ -180,13 +161,16 @@ const skillCategories = [
     title: "Tools & Technologies",
     colorHex: "#8B5CF6",
     skills: [
-      { name: "Python",        level: 88 },
-      { name: "SQL / MySQL",   level: 85 },
-      { name: "R",             level: 75 },
-      { name: "Power BI",      level: 87 },
-      { name: "Tableau",       level: 78 },
-      { name: "Scikit-Learn",  level: 75 },
-      { name: "Azure ML",      level: 70 },
+      "Python",
+      "SQL / MySQL",
+      "R",
+      "Power BI",
+      "Tableau",
+      "VBA",
+      "Airtable",
+      "Google Apps Script",
+      "SAP Business One",
+      "Git / GitHub",
     ],
   },
 ];
@@ -250,7 +234,7 @@ const SkillsSection = () => (
       </div>
 
       {/* Skill cards grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-4 auto-rows-fr">
         {skillCategories.map((category, index) => (
           <SkillCard
             key={index}

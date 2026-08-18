@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import { Database, TrendingUp } from "lucide-react";
+import { BrainCircuit, Globe, Landmark, Database, TrendingUp } from "lucide-react";
 
 const ExperienceCard = ({ title, company, period, description, icon: Icon, colorHex = "#2B7FFF" }) => {
   const cardRef = useRef(null);
@@ -122,22 +122,55 @@ const ExperienceCard = ({ title, company, period, description, icon: Icon, color
 const ExperienceSection = () => {
   const experiences = [
     {
+      icon: BrainCircuit,
+      colorHex: "#5BA4FF",
+      title: "Investment & AI Operations Analyst",
+      company: "4Founders Capital",
+      period: "July 2026 - Present",
+      description: [
+        "Designed a new data schema and built an automated document ingestion pipeline, now in testing, to make internal data usable by AI systems. Ran the baseline study behind it, measuring what the manual process cost before replacing it.",
+        "Delivered internal AI enablement and governance training. Research markets and competitive landscapes, screen potential investments, and support due diligence and portfolio monitoring. Report mostly directly to the founders.",
+      ],
+    },
+    {
+      icon: Globe,
+      colorHex: "#00C9A7",
+      title: "Co-Director, UNDP Committee",
+      company: "National Model United Nations Spain",
+      period: "April 2026 - Present",
+      description: [
+        "Authored the committee's background guide, “Technology and Governance in Today's Digital Age”, the reference document delegates use to prepare for debate.",
+        "Co-Director of a 100+ delegate committee at NMUN Spain's inaugural edition, Barcelona, November 2026.",
+      ],
+    },
+    {
+      icon: Landmark,
+      colorHex: "#A78BFA",
+      title: "Vice President, VC Area Lead",
+      company: "Finance Society, La Salle Ramon Llull",
+      period: "August 2026 - Present",
+      description: [
+        "Lead the venture capital area of the university's Finance Society.",
+        "Working with the society beforehand, personally identified, approached and secured 4 to 8 courses and talks from external market experts to collaborate with the society.",
+      ],
+    },
+    {
       icon: Database,
       colorHex: "#2B7FFF",
       title: "Database Management & Systems Design",
       company: "La Salle Ramon Llull University",
-      period: "2025 – Current",
+      period: "December 2025 - May 2026",
       description: [
-        "Reduced institutional enrollment overhead by 85% by engineering an end-to-end pipeline that replaced a weeks-long email process with a real-time survey ingestion engine. Developed a single-click VBA interface to automate course matching for 100+ students, PDF generation, and direct HR record propagation.",
-        "Currently building an academic scheduling optimization engine designed to streamline faculty assignments and timetabling across all degree programs. Including a custom decision support framework that integrates multi-dimensional constraints, including regulatory compliance, workload balancing, and resource allocation logic to reduce time to decision.",
+        "Reduced institutional enrollment overhead by 85% by engineering an end-to-end pipeline that replaced a weeks-long email process with a real-time survey ingestion engine. Developed a single-click VBA interface to automate course matching, PDF generation, and direct HR record propagation.",
+        "Built an academic scheduling optimization engine that streamlined faculty assignments and timetabling across the entire business school, covering hundreds of professors. A custom decision support framework integrated multi-dimensional constraints, including regulatory compliance, workload balancing, and resource allocation logic, to reduce time to decision.",
       ],
     },
     {
       icon: TrendingUp,
-      colorHex: "#00C9A7",
+      colorHex: "#F59E0B",
       title: "Finance & Operations Analyst",
-      company: "Garnier y Garnier Desarollos Inmobiliarios",
-      period: "2023",
+      company: "Garnier y Garnier Desarrollos Inmobiliarios",
+      period: "May 2023 - August 2023",
       description: [
         "Optimized financial operations and bank reconciliations using SAP Business One to ensure audit compliance and strategic data accuracy for the development team.",
       ],
@@ -197,7 +230,7 @@ const ExperienceSection = () => {
           />
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto [&>*:last-child:nth-child(odd)]:lg:col-span-2 [&>*:last-child:nth-child(odd)]:lg:max-w-[calc(50%-1rem)] [&>*:last-child:nth-child(odd)]:lg:mx-auto">
           {experiences.map((exp, index) => (
             <ExperienceCard key={index} {...exp} />
           ))}

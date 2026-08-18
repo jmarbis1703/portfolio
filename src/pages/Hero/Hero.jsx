@@ -22,12 +22,12 @@ const GridBackground = () => (
 );
 
 const skillTags = [
+  "Investment Operations",
+  "Deal Screening & Market Research",
+  "AI Process Automation",
+  "Data Schemas & Pipelines",
+  "Python · SQL",
   "Power BI & DAX",
-  "Python · Pandas · NumPy",
-  "SQL & ETL Pipelines",
-  "Generative AI & LLMs",
-  "Azure · Databricks",
-  "Statistical Modeling",
 ];
 
 /* Shared button style — outer gradient wrapper */
@@ -48,17 +48,19 @@ from sklearn.pipeline import Pipeline
 def build_profile():
     return {
         "name":    "Juan Manuel Marbis",
-        "role":    "Data Analyst & BI Developer",
-        "bi":      ["Power BI", "DAX", "Tableau"],
+        "role":    "Investment & AI Operations Analyst",
+        "domain":  ["Venture Capital", "Investment Operations"],
+        "invest":  ["Deal Sourcing", "Market Research",
+                    "Due Diligence", "Portfolio Monitoring"],
+        "builds":  ["Data Schemas", "Ingestion Pipelines",
+                    "Reporting Automation"],
         "stack":   ["Python", "SQL", "R"],
-        "cloud":   ["Azure", "Databricks"],
-        "ai":      ["LLM APIs", "Prompt Engineering"],
-        "cert":    "IBM Data Science Professional",
-        "open_to_work": True
+        "ai":      ["LLM APIs", "Prompt Engineering", "Claude Code"],
+        "bi":      ["Power BI", "DAX", "Tableau"],
     }
 
-# 85% reduction in manual overhead
-# via automated VBA + SQL reporting engine`
+# 85% reduction in manual overhead, via an
+# end-to-end automated reporting engine`
   );
 
   useEffect(() => {
@@ -107,7 +109,7 @@ def build_profile():
               >
                 <i className="fas fa-chart-line text-xs" style={{ color: "var(--color-teal)" }} />
                 <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.72rem", color: "var(--color-teal)", fontWeight: 500, letterSpacing: "0.06em" }}>
-                  Data Analyst &amp; BI Developer · Barcelona
+                  Investment &amp; AI Operations Analyst · Barcelona
                 </span>
               </div>
 
@@ -120,11 +122,14 @@ def build_profile():
                   <span style={{
                     display: "block",
                     fontSize: "clamp(2.5rem, 5.5vw, 5.25rem)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
+                    // `background` is a shorthand and resets background-clip, so it
+                    // MUST be declared before the clip/fill properties below.
                     background: "linear-gradient(135deg, #5BA4FF 0%, #00C9A7 55%, #5BA4FF 100%)",
                     backgroundSize: "200% auto",
+                    WebkitBackgroundClip: "text",
+                    backgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    color: "transparent",
                     animation: "gradient-shift 5s linear infinite",
                   }}>
                     Marbis
@@ -135,8 +140,9 @@ def build_profile():
 
               {/* Description — no fixed maxWidth, flows with column */}
               <p className="w-full mb-5" style={{ fontFamily: "var(--font-body)", fontSize: "clamp(0.9rem, 1.5vw, 1.0625rem)", color: "var(--color-text-secondary)", lineHeight: 1.75, maxWidth: "52ch" }}>
-                Turning raw data into strategic decisions, BI development,
-                ETL pipelines, and ML modeling from concept to deployment.
+                I work in venture capital, screening deals and researching markets,
+                and I rebuild the manual processes a firm runs on, measuring what
+                they cost before replacing them with automation and AI.
               </p>
 
               {/* Skill tags */}
@@ -157,42 +163,24 @@ def build_profile():
                 ))}
               </div>
 
-              {/* CTAs — equal width, wrap on small screens */}
-              <div className="flex flex-wrap gap-3 w-full sm:w-auto">
+              {/* CTA — single button, sized to sit under the tag rows */}
+              <div className="flex w-full sm:w-auto">
                 <a
                   href="https://github.com/jmarbis1703"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex flex-1 sm:flex-none items-center justify-center p-0.5 rounded-xl transition-all duration-300 hover:scale-105"
-                  style={{ ...btnOuter, minWidth: "148px" }}
+                  className="group inline-flex w-full items-center justify-center p-0.5 rounded-xl transition-all duration-300 hover:scale-105"
+                  style={{ ...btnOuter, minWidth: "260px" }}
                 >
                   <span
-                    className="flex w-full items-center justify-center gap-2 px-6 py-2.5 rounded-[11px] text-white font-medium text-sm transition-all duration-300"
+                    className="flex w-full items-center justify-center gap-2.5 px-8 py-3 rounded-[11px] text-white font-medium text-sm transition-all duration-300"
                     style={btnInner}
                     onMouseEnter={(e) => (e.currentTarget.style.background = "transparent")}
                     onMouseLeave={(e) => (e.currentTarget.style.background = "var(--color-bg-surface)")}
                   >
                     <i className="fab fa-github" />
-                    GitHub
+                    View my work on GitHub
                     <i className="fas fa-arrow-right transition-transform duration-300 group-hover:translate-x-1" />
-                  </span>
-                </a>
-
-                <a
-                  href="/Juan_Marbis_CV.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group inline-flex flex-1 sm:flex-none items-center justify-center p-0.5 rounded-xl transition-all duration-300 hover:scale-105"
-                  style={{ ...btnOuter, minWidth: "148px" }}
-                >
-                  <span
-                    className="flex w-full items-center justify-center gap-2 px-6 py-2.5 rounded-[11px] text-white font-medium text-sm transition-all duration-300"
-                    style={btnInner}
-                    onMouseEnter={(e) => (e.currentTarget.style.background = "transparent")}
-                    onMouseLeave={(e) => (e.currentTarget.style.background = "var(--color-bg-surface)")}
-                  >
-                    Get Resume
-                    <i className="fas fa-download transition-transform duration-300 group-hover:translate-y-1" />
                   </span>
                 </a>
               </div>
